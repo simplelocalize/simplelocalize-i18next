@@ -18,5 +18,6 @@ You will also see any lint errors in the console.
 
 - [SimpleLocalize.io - website](https://simplelocalize.io)
 - [SimpleLocalize CLI - i18n keys extraction](https://github.com/simplelocalize/simplelocalize-cli)
+- [SimpleLocalize - yahoo/react-intl integration](https://github.com/simplelocalize/react-intl-simplelocalize)
 - [ISO 3166 - JSON/API](https://github.com/simplelocalize/iso-3166)
 - [i18next.com - website](https://www.i18next.com)
