@@ -1,5 +1,7 @@
 ![simplelocalize i18next](https://i.imgur.com/GArmdQL.png)
 
+## [Checkout demo](https://i18next.simplelocalize.io)
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -14,4 +16,7 @@ You will also see any lint errors in the console.
 
 ## Learn More
 
-
+- [SimpleLocalize.io - website](https://simplelocalize.io)
+- [SimpleLocalize CLI - i18n keys extraction](https://github.com/simplelocalize/simplelocalize-cli)
+- [ISO 3166 - JSON/API](https://github.com/simplelocalize/iso-3166)
+- [i18next.com - website](https://www.i18next.com)
