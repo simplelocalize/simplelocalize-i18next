@@ -1,6 +1,7 @@
 ![simplelocalize i18next](https://i.imgur.com/GArmdQL.png)
 
-## [Checkout demo](https://i18next.simplelocalize.io)
+## Demo
+[Checkout working demo with 3 languages](https://i18next.simplelocalize.io)
 
 ## Available Scripts
 
