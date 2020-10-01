@@ -28,7 +28,7 @@ i18n
       escapeValue: false
     },
     backend: {
-      loadPath: loadPath
+      loadPath
     }
   })
 

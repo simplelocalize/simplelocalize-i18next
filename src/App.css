@@ -30,7 +30,6 @@ button {
 }
 
 .App-header {
-  /*background-color: #282c34;*/
   background: linear-gradient(150deg, #202631 15%, #171B23 94%);
   min-height: 100vh;
   display: flex;

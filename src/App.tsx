@@ -11,6 +11,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>
+          <h1>SimpleLocalize.io ⚡️ i18next</h1>
           <p>
             {t("USE_BUTTONS_BELOW")}
           </p>
@@ -20,18 +21,18 @@ function App() {
           <hr/>
         </div>
 
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="simplelocalize with i18next" />
         <p>
           {t("DESCRIPTION")}
         </p>
 
         <a
           className="App-link"
-          href="https://simplelocalize.io"
+          href="https://github.com/simplelocalize/simplelocalize-i18next"
           target="_blank"
           rel="noopener noreferrer"
         >
-          {t("LEARN_MORE")}
+          {t("OPEN_GITHUB_REPOSITORY")}
         </a>
       </header>
     </div>
