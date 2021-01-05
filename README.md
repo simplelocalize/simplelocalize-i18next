@@ -3,6 +3,12 @@
 ## Demo
 [Checkout working demo with 3 languages](https://simplelocalize.github.io/simplelocalize-i18next/)
 
+
+## [Read integration tutorial](https://simplelocalize.io/blog/posts/i18next-reactjs-localization/)
+![react localization with i18next and simplelocalize](https://simplelocalize.io/static/6eaca9a4df7ff6a4cfdc2d398a0fa229/i18next-localization.jpg)
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
