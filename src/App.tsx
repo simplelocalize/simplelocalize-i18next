@@ -27,14 +27,29 @@ function App() {
           {t("DESCRIPTION")}
         </p>
 
-        <a
-          className="App-link"
-          href="https://github.com/simplelocalize/simplelocalize-i18next"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {t("OPEN_GITHUB_REPOSITORY")}
-        </a>
+        <div className="App-links">
+          <a
+            className="App-link"
+            href="https://github.com/simplelocalize/simplelocalize-i18next"
+          >
+            Github Repository
+          </a>
+          <div className="separator">|
+          </div>
+          <a
+            className="App-link"
+            href="https://simplelocalize.io/blog/posts/i18next-reactjs-localization/"
+          >Read integration post</a>
+          <div className="separator">|
+          </div>
+          <a
+            className="App-link"
+            href="https://simplelocalize.io/docs/integrations/i18next/"
+          >
+            Read integration docs
+          </a></div>
+
+
       </header>
     </div>
   );
