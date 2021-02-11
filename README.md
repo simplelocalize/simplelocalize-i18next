@@ -1,13 +1,5 @@
-![simplelocalize i18next](https://i.imgur.com/GArmdQL.png)
-
 ## Demo
-[Checkout working demo with 3 languages](https://simplelocalize.github.io/simplelocalize-i18next/)
-
-
-## [Read integration tutorial](https://simplelocalize.io/blog/posts/i18next-reactjs-localization/)
-![react localization with i18next and simplelocalize](https://simplelocalize.io/static/6eaca9a4df7ff6a4cfdc2d398a0fa229/i18next-localization.jpg)
-
-
+[Checkout working demo with 3 languages](https://i18next.simplelocalize.io)
 
 ## Available Scripts
 
@@ -23,9 +15,7 @@ You will also see any lint errors in the console.
 
 ## Learn More
 
-- [SimpleLocalize.io - website](https://simplelocalize.io)
-- [SimpleLocalize CLI - i18n keys extraction](https://github.com/simplelocalize/simplelocalize-cli)
-- [SimpleLocalize - yahoo/react-intl integration](https://github.com/simplelocalize/react-intl-simplelocalize)
-- [SimpleLocalize - GitHub Action](https://github.com/simplelocalize/simplelocalize-github-action)
-- [ISO 3166 - JSON/API](https://github.com/simplelocalize/iso-3166)
+- [Integration tutorial](https://simplelocalize.io/blog/posts/i18next-reactjs-localization/)
+- [Same app but with React-Intl library](https://github.com/simplelocalize/simplelocalize-react-intl)
+- [My blog post](https://simplelocalize.io/blog/posts/i18next-reactjs-localization/)
 - [i18next.com - website](https://www.i18next.com)
