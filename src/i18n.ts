@@ -4,76 +4,78 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import {initReactI18next} from 'react-i18next'
 import axios from "axios";
 
+const isProductionCode = process.env.NODE_ENV === 'production';
 const fallbackLanguage = 'en'
 
-const projectToken = "5e13e3019cff4dc6abe36009445f0883"; // YOUR PROJECT TOKEN
-const apiKey = ""; // YOUR API KEY
+const projectToken = "XXXXXXXXXXXXXX"; // YOUR PROJECT TOKEN
+const apiKey = "XXXXXXXXXXXXXX"; // YOUR API KEY
 
+const apiBaseUrl = "https://api.simplelocalize.io/api";
 const cdnBaseUrl = "https://cdn.simplelocalize.io";
 const environment = "_latest"; // or "_production"
 const loadPath = `${cdnBaseUrl}/${projectToken}/${environment}/{{lng}}`;
-// const loadPathWithNamespaces = `${cdnBaseUrl}/${projectToken}/${environment}/{{lng}}/{{ns}}`;
-const endpoint = `https://api.simplelocalize.io/api/v1/translations`;
+const loadPathWithNamespaces = `${cdnBaseUrl}/${projectToken}/${environment}/{{lng}}/{{ns}}`;
 const configuration = {
-  headers: {
-    'X-SimpleLocalize-Token': apiKey
-  }
+    headers: {
+        'X-SimpleLocalize-Token': apiKey
+    }
 };
 
-let translationKeyIds: string[] = [];
+const createTranslationKeys = async (requestBody: any) => axios.post(`${apiBaseUrl}/v1/translation-keys/bulk`, requestBody, configuration)
+const updateTranslations = async (requestBody: any) => axios.patch(`${apiBaseUrl}/v2/translations/bulk`, requestBody, configuration)
+
+const missing: any[] = [];
+const saveMissing = async () => {
+    if (missing.length === 0 || isProductionCode) {
+        return;
+    }
+    console.info(`Saving ${missing.length} missing translation keys`);
+
+    const translationKeys = missing.map((element) => ({
+        key: element.translationKey,
+        namespace: element.namespace,
+    }));
+
+    await createTranslationKeys({translationKeys})
+        .catch((error) => console.error(`Error during creating translation keys: ${error}`));
+
+    const translations = missing.map((element) => ({
+        key: element.translationKey,
+        namespace: element.namespace,
+        language: element.language,
+        text: element.fallbackValue,
+    }));
+    await updateTranslations({translations})
+        .catch((error) => console.error(`Error during updating translations: ${error}`));
+    missing.length = 0;
+}
+
+setInterval(async () => {
+    await saveMissing();
+}, 30_000); // decreasing this value may lead to the API rate limit
 
 i18n
-  .use(Backend)
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    fallbackLng: fallbackLanguage,
-    backend: {
-      loadPath: loadPath,
-      //loadPath: loadPathWithNamespaces # uncomment if you use namespaces
-    },
-    saveMissing: true,
-    missingKeyHandler: async (lngs, ns, key, fallbackValue) => {
-
-      console.debug("Missing translation key", ns, key);
-      const translationKeyId = `${ns}_${key}`;
-      if (translationKeyIds.includes(translationKeyId)) {
-        console.debug("Skipping translation key creation: " + key);
-        return;
-      }
-
-      const requestBody = {
-        content: [
-          {
-            key: key,
-            //namespace: ns, # uncomment if you use namespaces
-            language: fallbackLanguage,
-            text: fallbackValue
-          }
-        ]
-      }
-
-      axios.post(endpoint, requestBody, configuration)
-        .then(() => {
-          console.debug("Create translation key: " + key);
-          translationKeyIds.push(translationKeyId);
-        })
-        .catch(error => {
-          if (error.response) {
-            const status = error.response.status;
-            if (status === 429) {
-              console.warn(`Too many requests`);
-            } else if (status === 403) {
-              console.error(`Incorrect API Key`);
-            } else if (status === 400) {
-              console.error(`Incorrect request`, error.response.data);
-            } else {
-              console.error(`Request failed with ${status} code`, error.response.data);
-            }
-          }
-        })
-    }
-  })
+    .use(Backend)
+    .use(LanguageDetector)
+    .use(initReactI18next)
+    .init({
+        fallbackLng: fallbackLanguage,
+        backend: {
+            loadPath: loadPath,
+            //loadPath: loadPathWithNamespaces # uncomment if you use namespaces
+        },
+        saveMissing: !isProductionCode,
+        defaultNS: "", // you can set default namespace here
+        missingKeyHandler: async (languages, namespace, translationKey, fallbackValue) => {
+            console.debug(`[${namespace}][${translationKey}] not available in Translation Hosting`);
+            missing.push({
+                translationKey: translationKey,
+                namespace: namespace ?? "",
+                language: languages[0] ?? fallbackLanguage,
+                fallbackValue: fallbackValue ?? ""
+            });
+        }
+    })
 
 
 export default i18n;
