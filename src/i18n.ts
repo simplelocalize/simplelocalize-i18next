@@ -61,8 +61,7 @@ i18n
     .init({
         fallbackLng: fallbackLanguage,
         backend: {
-            loadPath: loadPath,
-            //loadPath: loadPathWithNamespaces # uncomment if you use namespaces
+            loadPath: loadPath, // or loadPathWithNamespaces if you use namespaces
         },
         saveMissing: !isProductionCode,
         defaultNS: "", // you can set default namespace here
